@@ -37,7 +37,6 @@ class WelcomeScreenState extends State<WelcomeScreen> {
             WelcomeCubit(context.read<DataProvider>())..checkLoggedIn(),
         child: BlocConsumer<WelcomeCubit, WelcomeState>(
           listener: (context, state) {
-            print('listening: $state');
             if (state.status is Submitting) {
               showProgressDialog(context);
             } else if (state.status is SubmissionSuccess) {
@@ -50,11 +49,7 @@ class WelcomeScreenState extends State<WelcomeScreen> {
             }
           },
           builder: (context, state) {
-            print('Start of builder');
             var cubit = context.read<WelcomeCubit>();
-            // if (state.status is InitialStatus) {
-            //   cubit.checkLoggedIn().whenComplete(() => null);
-            // }
             return appScaffold(context,
               appBar: PreferredSize(
                   child: Container(), preferredSize: Size(0, 0)
